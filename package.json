@@ -1,0 +1,35 @@
+{
+  "name": "gulp-modify-css-urls",
+  "version": "0.0.0",
+  "description": "Gulp plugin for modifying CSS URLs",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "dustinspecker/gulp-modify-css-urls",
+  "author": {
+    "name": "Dustin Specker",
+    "email": "DustinSpecker@DustinSpecker.com",
+    "url": "https://github.com/dustinspecker"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [],
+  "dependencies": {
+    "rework": "^1.0.1",
+    "rework-plugin-url": "^1.0.1",
+    "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.1",
+    "gulp-util": "^3.0.3",
+    "istanbul": "^0.3.0",
+    "mocha": "^2.0.0"
+  }
+}
