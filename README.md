@@ -13,7 +13,6 @@
 var gulp = require('gulp')
   , modifyCssUrls = require('gulp-modify-css-urls');
 
-
 /* style.css
 body {
   background-image: url('images/logo.png');
@@ -28,12 +27,12 @@ gulp.task('modifyUrls', function () {
     }))
     .pipe(gulp.dest('./'));
 });
-```
 /* style.css
 body {
   background-image: url('app/images/logo.png');
 }
 */
+```
 
 ## License
 MIT
