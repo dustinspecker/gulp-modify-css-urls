@@ -20,7 +20,10 @@
   "files": [
     "index.js"
   ],
-  "keywords": [],
+  "keywords": [
+    "gulpplugin",
+    "css"
+  ],
   "dependencies": {
     "rework": "^1.0.1",
     "rework-plugin-url": "^1.0.1",
