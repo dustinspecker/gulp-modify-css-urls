@@ -1,10 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-  - 'iojs'
-  - '0.12'
-  - '0.10'
+- iojs
+- '0.12'
+- '0.10'
 os:
-  - linux
-  - osx
+- linux
+- osx
 after_success: npm run-script coveralls
+notifications:
+  slack:
+    rooms:
+      secure: UZnouwnoaXYP+Rl9Ggv+JeGU05Lm3KVX/HCabqroLk0+M6KkdDaXM+j/F2XzHxTMmCtP5RTL64997R+c54sXal2JNXEu5WeKHvkCXtz23ftexpWnSzf/+kOOH5XSUw5L7DwC1IjZklOFyVySf3KAJQCX2cAp1SaYpXkGu8UJ9zM=
