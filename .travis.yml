@@ -9,6 +9,11 @@ os:
 - osx
 after_success: npm run-script coveralls
 notifications:
+  email:
+    recipients:
+      - dustinspecker@gmail.com
+    on_success: change
+    on_failure: always
   slack:
     rooms:
       secure: UZnouwnoaXYP+Rl9Ggv+JeGU05Lm3KVX/HCabqroLk0+M6KkdDaXM+j/F2XzHxTMmCtP5RTL64997R+c54sXal2JNXEu5WeKHvkCXtz23ftexpWnSzf/+kOOH5XSUw5L7DwC1IjZklOFyVySf3KAJQCX2cAp1SaYpXkGu8UJ9zM=
