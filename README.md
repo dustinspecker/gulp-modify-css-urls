@@ -23,18 +23,32 @@ body {
 gulp.task('modifyUrls', function () {
   return gulp.src('style.css')
     .pipe(modifyCssUrls({
-      modify: function (url) {
+      modify: function (url, filePath) {
         return 'app/' + url;
-      }
+      },
+      prepend: 'https://fancycdn.com/',
+      append: '?cache-buster'
     }))
     .pipe(gulp.dest('./'));
 });
 /* style.css
 body {
-  background-image: url('app/images/logo.png');
+  background-image: url('https://fancycdn.com/app/images/logo.png?cache-buster');
 }
 */
 ```
+
+## Options
+### modify 
+A function that is passed the current URL and file path and then returns the modified URL to replace the existent URL.
+
+**The modify function is always ran *before* append and prepend options.**
+
+### append
+A string that is appended to every URL.
+
+### prepend
+A string that is prepended to every URL.
 
 ## License
 MIT
