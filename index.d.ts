@@ -1,5 +1,5 @@
 declare module modifyCssUrls {
-  export interface options {
+  export interface Options {
     append?: string;
     modify?: Function;
     prepend?: string;
@@ -7,5 +7,5 @@ declare module modifyCssUrls {
   export interface Stream extends NodeJS.ReadWriteStream {
       write(file: any): boolean;
   }
-  export function modifyCssUrls(options?: options): Stream;
+  export function modifyCssUrls(options?: Options): Stream;
 }
