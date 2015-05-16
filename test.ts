@@ -1,8 +1,7 @@
-/* global describe, beforeEach, it */
 'use strict';
-var assert = require('assert')
-  , gutil = require('gulp-util')
-  , modifyCssUrls = require('./');
+import assert = require('assert');
+import gutil = require('gulp-util');
+import {modifyCssUrls} from './index';
 
 describe('gulp-modify-css-urls', function () {
   var fileContents;
@@ -16,11 +15,11 @@ describe('gulp-modify-css-urls', function () {
   it('should not change anything in fileContents if no option set', function (done) {
     var stream = modifyCssUrls();
 
-    stream.on('data', function (file) {
+    stream.on('data', function (file:gutil.File) {
       assert(file.contents.toString() === fileContents);
       done();
     });
-
+    
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
@@ -37,14 +36,14 @@ describe('gulp-modify-css-urls', function () {
       }
     });
 
-    stream.on('data', function (file) {
+    stream.on('data', function (file:gutil.File) {
       var expectedCss = ['body {\n',
                          '  background-image: url("app/./style.cssimages/logo.png");\n',
                          '}'].join('');
       assert(file.contents.toString() === expectedCss);
       done();
     });
-
+    
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
@@ -81,7 +80,7 @@ describe('gulp-modify-css-urls', function () {
       append: '?abcd1234'
     });
 
-    stream.on('data', function (file) {
+    stream.on('data', function (file:gutil.File) {
       var expectedCss = ['body {\n',
                          '  background-image: url("images/logo.png?abcd1234");\n',
                          '}'].join('');

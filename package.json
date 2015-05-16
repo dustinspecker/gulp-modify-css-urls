@@ -14,7 +14,9 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec",
+    "prepublish": "npm run-script test",
+    "pretest": "node ./node_modules/typescript/bin/tsc.js",
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec test.js",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "files": [
@@ -33,6 +35,7 @@
     "coveralls": "^2.11.1",
     "gulp-util": "^3.0.3",
     "istanbul": "^0.3.0",
-    "mocha": "^2.0.0"
+    "mocha": "^2.0.0",
+    "typescript": "^1.5.0-beta"
   }
 }
