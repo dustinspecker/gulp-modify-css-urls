@@ -3,19 +3,19 @@ import assert = require('assert');
 import gutil = require('gulp-util');
 import {modifyCssUrls} from './index';
 
-describe('gulp-modify-css-urls', function () {
+describe('gulp-modify-css-urls', () => {
   var fileContents;
 
-  beforeEach(function () {
+  beforeEach(() => {
     fileContents = ['body {\n',
                     '  background-image: url("images/logo.png");\n',
                     '}'].join('');
   });
 
-  it('should not change anything in fileContents if no option set', function (done) {
+  it('should not change anything in fileContents if no option set', (done) => {
     var stream = modifyCssUrls();
 
-    stream.on('data', function (file:gutil.File) {
+    stream.on('data', (file:gutil.File) => {
       assert(file.contents.toString() === fileContents);
       done();
     });
@@ -29,14 +29,14 @@ describe('gulp-modify-css-urls', function () {
     stream.end();
   });
 
-  it('should add app folder to CSS URL', function (done) {
+  it('should add app folder to CSS URL', (done) => {
     var stream = modifyCssUrls({
-      modify: function (url, filePath) {
+      modify: (url, filePath) => {
         return 'app/' + filePath + url;
       }
     });
 
-    stream.on('data', function (file:gutil.File) {
+    stream.on('data', (file:gutil.File) => {
       var expectedCss = ['body {\n',
                          '  background-image: url("app/./style.cssimages/logo.png");\n',
                          '}'].join('');
@@ -53,12 +53,12 @@ describe('gulp-modify-css-urls', function () {
     stream.end();
   });
 
-  it('should prepend url with string value', function (done) {
+  it('should prepend url with string value', (done) => {
     var stream = modifyCssUrls({
       prepend: 'https://fancycdn.com/'
     });
 
-    stream.on('data', function (file) {
+    stream.on('data', (file) => {
       var expectedCss = ['body {\n',
                          '  background-image: url("https://fancycdn.com/images/logo.png");\n',
                          '}'].join('');
@@ -75,12 +75,12 @@ describe('gulp-modify-css-urls', function () {
     stream.end();
   });
 
-  it('should append url with string value', function (done) {
+  it('should append url with string value', (done) => {
     var stream = modifyCssUrls({
       append: '?abcd1234'
     });
 
-    stream.on('data', function (file:gutil.File) {
+    stream.on('data', (file:gutil.File) => {
       var expectedCss = ['body {\n',
                          '  background-image: url("images/logo.png?abcd1234");\n',
                          '}'].join('');

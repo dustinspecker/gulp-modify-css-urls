@@ -8,7 +8,7 @@ var reworkUrl = require('rework-plugin-url');
 export function modifyCssUrls(options?: modifyCssUrls.Options):modifyCssUrls.Stream {
    options = options || {};
 
-  return through.obj(function (file: gutil.File, enc: string, cb: () => void) {
+  return through.obj(function (file: gutil.File, enc: string, cb: () => void): void {
     var modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
 
     file.contents = new Buffer(modifiedContents);
@@ -19,9 +19,9 @@ export function modifyCssUrls(options?: modifyCssUrls.Options):modifyCssUrls.Str
   });
 }
 
-function modifyUrls(filePath: string, fileContents: string, options: modifyCssUrls.Options) {
+function modifyUrls(filePath: string, fileContents: string, options: modifyCssUrls.Options): string {
   return rework(fileContents)
-    .use(reworkUrl(function (url: string) {
+    .use(reworkUrl((url: string): string => {
       if (typeof options.modify === 'function')
         url = options.modify(url, filePath);
 
