@@ -26,6 +26,7 @@
     "css"
   ],
   "dependencies": {
+    "is-fn": "^1.0.0",
     "rework": "^1.0.1",
     "rework-plugin-url": "^1.0.1",
     "through2": "2.0.0"

@@ -2,6 +2,7 @@
 import gutil = require('gulp-util');
 import through = require('through2');
 
+var isFn = require('is-fn');
 var rework = require('rework');
 var reworkUrl = require('rework-plugin-url');
 
@@ -22,7 +23,7 @@ export function modifyCssUrls(options?: modifyCssUrls.Options):modifyCssUrls.Str
 function modifyUrls(filePath: string, fileContents: string, options: modifyCssUrls.Options): string {
   return rework(fileContents)
     .use(reworkUrl((url: string): string => {
-      if (typeof options.modify === 'function')
+      if (isFn(options.modify))
         url = options.modify(url, filePath);
 
       if (typeof options.prepend === 'string') {
