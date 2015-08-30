@@ -14,7 +14,6 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "prepublish": "npm run-script test",
     "pretest": "node ./node_modules/typescript/bin/tsc.js",
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec test.js",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
