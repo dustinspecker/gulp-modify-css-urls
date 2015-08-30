@@ -4,7 +4,7 @@ import gutil = require('gulp-util');
 import {modifyCssUrls} from './index';
 
 describe('gulp-modify-css-urls', () => {
-  var fileContents;
+  var fileContents: string;
 
   beforeEach(() => {
     fileContents = ['body {\n',
@@ -12,14 +12,14 @@ describe('gulp-modify-css-urls', () => {
                     '}'].join('');
   });
 
-  it('should not change anything in fileContents if no option set', (done) => {
+  it('should not change anything in fileContents if no option set', (done: Function) => {
     var stream = modifyCssUrls();
 
     stream.on('data', (file:gutil.File) => {
       assert(file.contents.toString() === fileContents);
       done();
     });
-    
+
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
@@ -29,9 +29,9 @@ describe('gulp-modify-css-urls', () => {
     stream.end();
   });
 
-  it('should add app folder to CSS URL', (done) => {
+  it('should add app folder to CSS URL', done => {
     var stream = modifyCssUrls({
-      modify: (url, filePath) => {
+      modify: (url: string, filePath: string): string => {
         return 'app/' + filePath + url;
       }
     });
@@ -43,7 +43,7 @@ describe('gulp-modify-css-urls', () => {
       assert(file.contents.toString() === expectedCss);
       done();
     });
-    
+
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
@@ -53,12 +53,12 @@ describe('gulp-modify-css-urls', () => {
     stream.end();
   });
 
-  it('should prepend url with string value', (done) => {
+  it('should prepend url with string value', done => {
     var stream = modifyCssUrls({
       prepend: 'https://fancycdn.com/'
     });
 
-    stream.on('data', (file) => {
+    stream.on('data', (file:gutil.File) => {
       var expectedCss = ['body {\n',
                          '  background-image: url("https://fancycdn.com/images/logo.png");\n',
                          '}'].join('');
@@ -75,7 +75,7 @@ describe('gulp-modify-css-urls', () => {
     stream.end();
   });
 
-  it('should append url with string value', (done) => {
+  it('should append url with string value', done => {
     var stream = modifyCssUrls({
       append: '?abcd1234'
     });
