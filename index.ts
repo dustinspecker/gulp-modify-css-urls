@@ -2,15 +2,15 @@
 import gutil = require('gulp-util');
 import through = require('through2');
 
-var isFn = require('is-fn');
-var rework = require('rework');
-var reworkUrl = require('rework-plugin-url');
+const isFn = require('is-fn');
+const rework = require('rework');
+const reworkUrl = require('rework-plugin-url');
 
 export function modifyCssUrls(options?: modifyCssUrls.Options):modifyCssUrls.Stream {
    options = options || {};
 
   return through.obj(function (file: gutil.File, enc: string, cb: () => void): void {
-    var modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
+    const modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
 
     file.contents = new Buffer(modifiedContents);
 
