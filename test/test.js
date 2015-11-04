@@ -8,9 +8,11 @@ describe('gulp-modify-css-urls', () => {
   let fileContents;
 
   beforeEach(() => {
-    fileContents = ['body {\n',
-                    '  background-image: url("images/logo.png");\n',
-                    '}'].join('');
+    fileContents = [
+      'body {\n',
+      '  background-image: url("images/logo.png");\n',
+      '}'
+    ].join('');
   });
 
   it('should not change anything in fileContents if no option set', done => {
@@ -32,15 +34,16 @@ describe('gulp-modify-css-urls', () => {
 
   it('should add app folder to CSS URL', done => {
     let stream = modifyCssUrls({
-      modify: (url, filePath) => {
-        return 'app/' + filePath + url;
-      }
+      modify: (url, filePath) => 'app/' + filePath + url
     });
 
     stream.on('data', file => {
-      let expectedCss = ['body {\n',
-                         '  background-image: url("app/./style.cssimages/logo.png");\n',
-                         '}'].join('');
+      let expectedCss = [
+        'body {\n',
+        '  background-image: url("app/./style.cssimages/logo.png");\n',
+        '}'
+      ].join('');
+
       assert(file.contents.toString() === expectedCss);
       done();
     });
@@ -60,9 +63,12 @@ describe('gulp-modify-css-urls', () => {
     });
 
     stream.on('data', file => {
-      let expectedCss = ['body {\n',
-                         '  background-image: url("https://fancycdn.com/images/logo.png");\n',
-                         '}'].join('');
+      let expectedCss = [
+        'body {\n',
+        '  background-image: url("https://fancycdn.com/images/logo.png");\n',
+        '}'
+      ].join('');
+
       assert(file.contents.toString() === expectedCss);
       done();
     });
@@ -82,9 +88,12 @@ describe('gulp-modify-css-urls', () => {
     });
 
     stream.on('data', file => {
-      let expectedCss = ['body {\n',
-                         '  background-image: url("images/logo.png?abcd1234");\n',
-                         '}'].join('');
+      let expectedCss = [
+        'body {\n',
+        '  background-image: url("images/logo.png?abcd1234");\n',
+        '}'
+      ].join('');
+
       assert(file.contents.toString() === expectedCss);
       done();
     });
