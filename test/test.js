@@ -97,4 +97,29 @@ describe('gulp-modify-css-urls', () => {
 
     stream.end();
   });
+
+  it('should not modify data uris', done => {
+    const fileContentsWithDataURI = [
+      'body {\n',
+      '  background-image: url("data:image/png;base64,iVBORw");\n',
+      '}'
+    ].join('');
+
+    let stream = modifyCssUrls({
+      append: '?abcd1234'
+    });
+
+    stream.on('data', file => {
+      assert(file.contents.toString() === fileContentsWithDataURI);
+      done();
+    });
+
+    stream.write(new gutil.File({
+      base: '.',
+      path: './style.css',
+      contents: new Buffer(fileContentsWithDataURI)
+    }));
+
+    stream.end();
+  });
 });

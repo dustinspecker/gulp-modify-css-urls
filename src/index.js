@@ -7,6 +7,10 @@ import through from 'through2';
 function modifyUrls(filePath, fileContents, options) {
   return rework(fileContents)
     .use(reworkUrl(url => {
+      if (url.indexOf('data:') === 0) {
+        return url;
+      }
+
       if (isFn(options.modify)) {
         url = options.modify(url, filePath);
       }
