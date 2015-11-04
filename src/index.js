@@ -8,7 +8,7 @@ import through from 'through2';
  * Transforms URLs in files
  * @param {String} filePath - path of CSS file that may be used by options.modify
  * @param {String} fileContents - contents of the file at filePath
- * @param {Object} [options] - rules for modifying URLs
+ * @param {Object} options - rules for modifying URLs
  * @param {String} [options.append] - URLs are appended with this value
  * @param {Function} [options.modify] - This function is always called before append and prepend.
  * @param {String} [options.prepend] - URLs are prepended with this value
@@ -39,7 +39,7 @@ function modifyUrls(filePath, fileContents, options) {
 
 /**
  * Pushes along files with transformed URLs
- * @param {Object} options - same as described for modifyUrls function
+ * @param {Object} [options={}] - same as described for modifyUrls function
  * @return {Stream} - file with transformed URLs
  */
 module.exports = function (options = {}) {
