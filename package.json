@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "description": "Gulp plugin for modifying CSS URLs",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "dustinspecker/gulp-modify-css-urls",
   "author": {
     "name": "Dustin Specker",
