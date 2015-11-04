@@ -11,5 +11,3 @@ notifications:
     on_failure: always
     rooms:
       secure: UZnouwnoaXYP+Rl9Ggv+JeGU05Lm3KVX/HCabqroLk0+M6KkdDaXM+j/F2XzHxTMmCtP5RTL64997R+c54sXal2JNXEu5WeKHvkCXtz23ftexpWnSzf/+kOOH5XSUw5L7DwC1IjZklOFyVySf3KAJQCX2cAp1SaYpXkGu8UJ9zM=
-env:
-  secure: XedAIgXsj1q367deqo4P+51kQ1REp7/mP9BxJH8uCkisi90VpqV3sq8wGn30dXcAuIpVzTJjGgn5UEyq6kuBH2f9yi/TRNmc+0BPwDWihuOLD2x5T4pbsVwLrPtO1XZY9tq42v5RNr2U/CLhCxU6noTPMhgO9j2BOJCwNH0GuNg=
