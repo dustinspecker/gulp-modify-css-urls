@@ -1,6 +1,6 @@
 {
   "name": "gulp-modify-css-urls",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Gulp plugin for modifying CSS URLs",
   "license": "MIT",
   "main": "index.js",
