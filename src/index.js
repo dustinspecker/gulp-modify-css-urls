@@ -10,7 +10,7 @@ import through from 'through2';
  * @param {String} fileContents - contents of the file at filePath
  * @param {Object} options - rules for modifying URLs
  * @param {String} [options.append] - URLs are appended with this value
- * @param {Function} [options.modify] - This function is always called before append and prepend.
+ * @param {Function} [options.modify] - This function is always called before append and prepend
  * @param {String} [options.prepend] - URLs are prepended with this value
  * @return {String} - transformed URL
  */
