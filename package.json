@@ -45,8 +45,9 @@
     "gulp-eslint": "^1.0.0",
     "gulp-istanbul": "^0.10.0",
     "gulp-jscs": "^3.0.0",
-    "gulp-jshint": "^1.11.0",
+    "gulp-jshint": "^2.0.0",
     "gulp-mocha": "^2.1.0",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.8.0"
   }
 }
