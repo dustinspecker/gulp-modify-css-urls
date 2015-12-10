@@ -5,7 +5,7 @@ import gutil from 'gulp-util';
 import modifyCssUrls from '../lib';
 
 describe('gulp-modify-css-urls', () => {
-  let fileContents;
+  let fileContents, stream;
 
   beforeEach(() => {
     fileContents = [
@@ -16,7 +16,7 @@ describe('gulp-modify-css-urls', () => {
   });
 
   it('should not change anything in fileContents if no option set', done => {
-    let stream = modifyCssUrls();
+    stream = modifyCssUrls();
 
     stream.on('data', file => {
       assert(file.contents.toString() === fileContents);
@@ -33,12 +33,12 @@ describe('gulp-modify-css-urls', () => {
   });
 
   it('should add app folder to CSS URL', done => {
-    let stream = modifyCssUrls({
-      modify: (url, filePath) => 'app/' + filePath + url
+    stream = modifyCssUrls({
+      modify: (url, filePath) => `app/${filePath}${url}`
     });
 
     stream.on('data', file => {
-      let expectedCss = [
+      const expectedCss = [
         'body {\n',
         '  background-image: url("app/./style.cssimages/logo.png");\n',
         '}'
@@ -58,12 +58,12 @@ describe('gulp-modify-css-urls', () => {
   });
 
   it('should prepend url with string value', done => {
-    let stream = modifyCssUrls({
+    stream = modifyCssUrls({
       prepend: 'https://fancycdn.com/'
     });
 
     stream.on('data', file => {
-      let expectedCss = [
+      const expectedCss = [
         'body {\n',
         '  background-image: url("https://fancycdn.com/images/logo.png");\n',
         '}'
@@ -83,12 +83,12 @@ describe('gulp-modify-css-urls', () => {
   });
 
   it('should append url with string value', done => {
-    let stream = modifyCssUrls({
+    stream = modifyCssUrls({
       append: '?abcd1234'
     });
 
     stream.on('data', file => {
-      let expectedCss = [
+      const expectedCss = [
         'body {\n',
         '  background-image: url("images/logo.png?abcd1234");\n',
         '}'
@@ -114,7 +114,7 @@ describe('gulp-modify-css-urls', () => {
       '}'
     ].join('');
 
-    let stream = modifyCssUrls({
+    stream = modifyCssUrls({
       append: '?abcd1234'
     });
 
