@@ -17,23 +17,25 @@ import through from 'through2';
 function modifyUrls(filePath, fileContents, options) {
   return rework(fileContents)
     .use(reworkUrl(url => {
-      if (url.indexOf('data:') === 0) {
-        return url;
+      let formattedUrl = url;
+
+      if (formattedUrl.indexOf('data:') === 0) {
+        return formattedUrl;
       }
 
       if (isFn(options.modify)) {
-        url = options.modify(url, filePath);
+        formattedUrl = options.modify(formattedUrl, filePath);
       }
 
       if (typeof options.prepend === 'string') {
-        url = options.prepend + url;
+        formattedUrl = options.prepend + formattedUrl;
       }
 
       if (typeof options.append === 'string') {
-        url += options.append;
+        formattedUrl += options.append;
       }
 
-      return url;
+      return formattedUrl;
     })).toString();
 }
 
@@ -44,6 +46,7 @@ function modifyUrls(filePath, fileContents, options) {
  */
 module.exports = function (options = {}) {
   return through.obj(function (file, enc, cb) {
+    /* eslint no-invalid-this: 0 */
     const modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
 
     file.contents = new Buffer(modifiedContents);
