@@ -11,7 +11,40 @@
 
 ## Usage
 
+### ES2015
+
 ```javascript
+/* gulpfile.babel.js */
+import gulp from 'gulp';
+import modifyCssUrls from 'gulp-modify-css-urls';
+
+/* style.css
+body {
+  background-image: url('images/logo.png');
+}
+*/
+gulp.task('modifyUrls', () =>
+  gulp.src('style.css')
+    .pipe(modifyCssUrls({
+      modify: function (url, filePath) {
+        return 'app/' + url;
+      },
+      prepend: 'https://fancycdn.com/',
+      append: '?cache-buster'
+    }))
+    .pipe(gulp.dest('./'))
+);
+/* style.css
+body {
+  background-image: url('https://fancycdn.com/app/images/logo.png?cache-buster');
+}
+*/
+```
+
+### ES5
+
+```javascript
+/* gulpfile.js */
 var gulp = require('gulp')
   , modifyCssUrls = require('gulp-modify-css-urls');
 
