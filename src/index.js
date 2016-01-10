@@ -1,8 +1,8 @@
-'use strict';
-import isFn from 'is-fn';
-import rework from 'rework';
-import reworkUrl from 'rework-plugin-url';
-import through from 'through2';
+'use strict'
+import isFn from 'is-fn'
+import rework from 'rework'
+import reworkUrl from 'rework-plugin-url'
+import through from 'through2'
 
 /**
  * Transforms URLs in files
@@ -14,30 +14,30 @@ import through from 'through2';
  * @param {String} [options.prepend] - URLs are prepended with this value
  * @return {String} - transformed URL
  */
-function modifyUrls(filePath, fileContents, {append, modify, prepend}) {
-  return rework(fileContents)
+const modifyUrls = (filePath, fileContents, {append, modify, prepend}) =>
+  rework(fileContents)
     .use(reworkUrl(url => {
-      let formattedUrl = url;
+      let formattedUrl = url
 
       if (formattedUrl.indexOf('data:') === 0) {
-        return formattedUrl;
+        return formattedUrl
       }
 
       if (isFn(modify)) {
-        formattedUrl = modify(formattedUrl, filePath);
+        formattedUrl = modify(formattedUrl, filePath)
       }
 
       if (typeof prepend === 'string') {
-        formattedUrl = prepend + formattedUrl;
+        formattedUrl = prepend + formattedUrl
       }
 
       if (typeof append === 'string') {
-        formattedUrl += append;
+        formattedUrl += append
       }
 
-      return formattedUrl;
-    })).toString();
-}
+      return formattedUrl
+    }))
+    .toString()
 
 /**
  * Pushes along files with transformed URLs
@@ -47,12 +47,12 @@ function modifyUrls(filePath, fileContents, {append, modify, prepend}) {
 module.exports = function (options = {}) {
   return through.obj(function (file, enc, cb) {
     /* eslint no-invalid-this: 0 */
-    const modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
+    const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
 
-    file.contents = new Buffer(modifiedContents);
+    file.contents = new Buffer(modifiedContents)
 
-    this.push(file);
+    this.push(file)
 
-    cb();
-  });
-};
+    cb()
+  })
+}
