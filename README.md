@@ -26,8 +26,8 @@ body {
 gulp.task('modifyUrls', () =>
   gulp.src('style.css')
     .pipe(modifyCssUrls({
-      modify: function (url, filePath) {
-        return 'app/' + url;
+      modify(url, filePath) {
+        return `app/${url}`;
       },
       prepend: 'https://fancycdn.com/',
       append: '?cache-buster'
