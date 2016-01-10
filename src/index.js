@@ -14,7 +14,7 @@ import through from 'through2';
  * @param {String} [options.prepend] - URLs are prepended with this value
  * @return {String} - transformed URL
  */
-function modifyUrls(filePath, fileContents, options) {
+function modifyUrls(filePath, fileContents, {append, modify, prepend}) {
   return rework(fileContents)
     .use(reworkUrl(url => {
       let formattedUrl = url;
@@ -23,16 +23,16 @@ function modifyUrls(filePath, fileContents, options) {
         return formattedUrl;
       }
 
-      if (isFn(options.modify)) {
-        formattedUrl = options.modify(formattedUrl, filePath);
+      if (isFn(modify)) {
+        formattedUrl = modify(formattedUrl, filePath);
       }
 
-      if (typeof options.prepend === 'string') {
-        formattedUrl = options.prepend + formattedUrl;
+      if (typeof prepend === 'string') {
+        formattedUrl = prepend + formattedUrl;
       }
 
-      if (typeof options.append === 'string') {
-        formattedUrl += options.append;
+      if (typeof append === 'string') {
+        formattedUrl += append;
       }
 
       return formattedUrl;
