@@ -44,8 +44,8 @@ const modifyUrls = (filePath, fileContents, {append, modify, prepend}) =>
  * @param {Object} [options={}] - same as described for modifyUrls function
  * @return {Stream} - file with transformed URLs
  */
-module.exports = function (options = {}) {
-  return through.obj(function (file, enc, cb) {
+module.exports = (options = {}) =>
+  through.obj(function (file, enc, cb) {
     /* eslint no-invalid-this: 0 */
     const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
 
@@ -55,4 +55,3 @@ module.exports = function (options = {}) {
 
     cb()
   })
-}
