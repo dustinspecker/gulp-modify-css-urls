@@ -14,8 +14,10 @@ import through from 'through2'
  * @param {String} [options.prepend] - URLs are prepended with this value
  * @return {String} - transformed URL
  */
-const modifyUrls = (filePath, fileContents, {append, modify, prepend} = {}) =>
-  rework(fileContents)
+const modifyUrls = (filePath, fileContents, options = {}) => {
+  const {append, modify, prepend} = options
+
+  return rework(fileContents)
     .use(reworkUrl(url => {
       let formattedUrl = url
 
@@ -38,6 +40,7 @@ const modifyUrls = (filePath, fileContents, {append, modify, prepend} = {}) =>
       return formattedUrl
     }))
     .toString()
+}
 
 /**
  * Pushes along files with transformed URLs
