@@ -1,6 +1,6 @@
 # gulp-modify-css-urls
 [![NPM version](https://badge.fury.io/js/gulp-modify-css-urls.svg)](http://badge.fury.io/js/gulp-modify-css-urls)
-[![Build Status](https://travis-ci.org/dustinspecker/gulp-modify-css-urls.svg)](https://travis-ci.org/dustinspecker/gulp-modify-css-urls)
+[![Build Status](https://travis-ci.org/dustinspecker/gulp-modify-css-urls.svg?branch=master)](https://travis-ci.org/dustinspecker/gulp-modify-css-urls)
 [![Coverage Status](https://img.shields.io/coveralls/dustinspecker/gulp-modify-css-urls.svg)](https://coveralls.io/r/dustinspecker/gulp-modify-css-urls?branch=master)
 
 [![Dependencies](https://david-dm.org/dustinspecker/gulp-modify-css-urls.svg)](https://david-dm.org/dustinspecker/gulp-modify-css-urls/#info=dependencies&view=table)
