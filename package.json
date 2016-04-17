@@ -1,10 +1,13 @@
 {
   "name": "gulp-modify-css-urls",
-  "version": "0.2.2",
+  "version": "0.0.0-semantic-release",
   "description": "Gulp plugin for modifying CSS URLs",
   "license": "MIT",
   "main": "lib/index.js",
-  "repository": "dustinspecker/gulp-modify-css-urls",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dustinspecker/gulp-modify-css-urls.git"
+  },
   "author": {
     "name": "Dustin Specker",
     "email": "DustinSpecker@DustinSpecker.com",
@@ -15,7 +18,8 @@
   },
   "scripts": {
     "test": "gulp test",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
     "lib"
@@ -45,7 +49,8 @@
     "gulp-eslint": "^2.0.0",
     "gulp-istanbul": "^0.10.0",
     "gulp-mocha": "^2.1.0",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "semantic-release": "^4.3.5"
   },
   "config": {
     "commitizen": {

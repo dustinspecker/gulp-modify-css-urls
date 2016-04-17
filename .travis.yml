@@ -1,13 +1,25 @@
 sudo: false
 language: node_js
+cache:
+  directories:
+    - node_modules
 node_js:
-- 'stable'
-- '0.12'
-- '0.10'
-after_success: npm run-script coveralls
+  - '5'
+  - '4'
+  - '0.12'
+  - '0.10'
 notifications:
-  slack:
-    on_success: change
-    on_failure: always
-    rooms:
-      secure: UZnouwnoaXYP+Rl9Ggv+JeGU05Lm3KVX/HCabqroLk0+M6KkdDaXM+j/F2XzHxTMmCtP5RTL64997R+c54sXal2JNXEu5WeKHvkCXtz23ftexpWnSzf/+kOOH5XSUw5L7DwC1IjZklOFyVySf3KAJQCX2cAp1SaYpXkGu8UJ9zM=
+  email: false
+before_script:
+  - npm prune
+script:
+ - npm run test
+after_success:
+  - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
+  - python travis_after_all.py
+  - 'export $(cat .to_export_back) &> /dev/null'
+  - npm run-script coveralls
+  - npm run semantic-release
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
