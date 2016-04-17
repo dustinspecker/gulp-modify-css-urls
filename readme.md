@@ -7,6 +7,7 @@
 [![DevDependencies](https://david-dm.org/dustinspecker/gulp-modify-css-urls/dev-status.svg)](https://david-dm.org/dustinspecker/gulp-modify-css-urls/#info=devDependencies&view=table)
 [![PeerDependencies](https://david-dm.org/dustinspecker/gulp-modify-css-urls/peer-status.svg)](https://david-dm.org/dustinspecker/gulp-modify-css-urls/#info=peerDependencies&view=table)
 
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 > Gulp plugin for modifying CSS URLs
 
