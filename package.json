@@ -41,7 +41,7 @@
     "coveralls": "^2.11.2",
     "cz-conventional-changelog": "^1.1.5",
     "del": "^2.0.0",
-    "eslint-config-dustinspecker": "^0.5.0",
+    "eslint-config-dustinspecker": "^1.0.0",
     "eslint-plugin-new-with-error": "^1.1.0",
     "eslint-plugin-no-use-extend-native": "^0.3.1",
     "gulp": "^3.9.0",
