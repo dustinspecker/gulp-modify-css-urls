@@ -15,7 +15,7 @@ import through from 'through2'
  * @return {String} - transformed URL
  */
 const modifyUrls = (filePath, fileContents, options = {}) => {
-  const {append, modify, prepend} = options
+  const { append, modify, prepend } = options
 
   return rework(fileContents)
     .use(reworkUrl(url => {
@@ -48,11 +48,15 @@ const modifyUrls = (filePath, fileContents, options = {}) => {
  * @return {Stream} - file with transformed URLs
  */
 module.exports = options =>
-  through.obj(function (file, enc, cb) {
+  through.obj(function(file, enc, cb) {
     /* eslint no-invalid-this: 0 */
-    const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
 
-    file.contents = new Buffer(modifiedContents)
+    try {
+      const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
+      file.contents = new Buffer(modifiedContents)
+    } catch (err) {
+      return cb(new Error(err));
+    }
 
     this.push(file)
 
