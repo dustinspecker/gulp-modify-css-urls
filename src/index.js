@@ -53,12 +53,12 @@ module.exports = options =>
 
     try {
       const modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
+
+	  file.contents = new Buffer(modifiedContents)
     }
     catch(err) {
       return cb(new Error(err));
     }
-
-    file.contents = new Buffer(modifiedContents)
 
     this.push(file)
 
