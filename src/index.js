@@ -50,7 +50,13 @@ const modifyUrls = (filePath, fileContents, options = {}) => {
 module.exports = options =>
   through.obj(function (file, enc, cb) {
     /* eslint no-invalid-this: 0 */
-    const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
+
+    try {
+      var modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
+    }
+    catch(err) {
+      return cb(new Error(err));
+    }
 
     file.contents = new Buffer(modifiedContents)
 
