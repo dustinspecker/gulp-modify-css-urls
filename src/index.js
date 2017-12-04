@@ -52,7 +52,7 @@ module.exports = options =>
     /* eslint no-invalid-this: 0 */
 
     try {
-      var modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
+      const modifiedContents = modifyUrls(file.path, file.contents.toString(), options);
     }
     catch(err) {
       return cb(new Error(err));
