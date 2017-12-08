@@ -7,10 +7,10 @@ import istanbul from 'gulp-istanbul'
 import mocha from 'gulp-mocha'
 
 const configFiles = './gulpfile.babel.js'
-  , srcFiles = 'src/*.js'
-  , testFiles = 'test/*.js'
+const srcFiles = 'src/*.js'
+const testFiles = 'test/*.js'
 
-  , destDir = './lib/'
+const destDir = './lib/'
 
 gulp.task('clean', () => del(destDir))
 
