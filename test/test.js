@@ -1,6 +1,9 @@
 /* global describe, beforeEach, it */
 import assert from 'assert'
+import gulp from 'gulp'
+import gFile from 'gulp-file'
 import gutil from 'gulp-util'
+import sourcemaps from 'gulp-sourcemaps'
 
 import modifyCssUrls from '../lib'
 
@@ -52,6 +55,34 @@ describe('gulp-modify-css-urls', () => {
     }))
 
     stream.end()
+  })
+
+  it('should support sourcemaps when enabled', done => {
+    let originalSourcemap
+
+    stream = gulp.src([])
+      .pipe(gFile('./style.css', fileContents))
+      .pipe(sourcemaps.init())
+      .on('data', file => {
+        originalSourcemap = file.sourceMap
+      })
+      .pipe(modifyCssUrls({
+        modify: (url, filePath) => `app/${filePath}${url}`
+      }))
+      .on('data', file => {
+        assert(file.sourceMap !== originalSourcemap)
+      })
+      .pipe(sourcemaps.write())
+
+    stream.on('finish', () => {
+      done()
+    })
+
+    stream.write(new gutil.File({
+      base: '.',
+      path: './style.css',
+      contents: Buffer.from(fileContents)
+    }))
   })
 
   it('should add app folder to CSS URL', done => {
