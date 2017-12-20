@@ -33,6 +33,28 @@ describe('gulp-modify-css-urls', () => {
     stream.end()
   })
 
+  it('should return error when file has invalid CSS and not pass file through', done => {
+    stream = modifyCssUrls()
+
+    stream.on('data', () => {
+      assert(false)
+    })
+
+    stream.on('error', error => {
+      assert(error instanceof gutil.PluginError)
+      assert(error.plugin === 'modify-css-urls')
+      done()
+    })
+
+    stream.write(new gutil.File({
+      base: '.',
+      path: './style.css',
+      contents: Buffer.from('invalid css')
+    }))
+
+    stream.end()
+  })
+
   it('should add app folder to CSS URL', done => {
     stream = modifyCssUrls({
       modify: (url, filePath) => `app/${filePath}${url}`

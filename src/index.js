@@ -1,4 +1,5 @@
 'use strict'
+import gutil from 'gulp-util'
 import isFn from 'is-fn'
 import rework from 'rework'
 import reworkUrl from 'rework-plugin-url'
@@ -49,12 +50,15 @@ const modifyUrls = (filePath, fileContents, options = {}) => {
  */
 module.exports = options =>
   through.obj(function (file, enc, cb) {
-    /* eslint no-invalid-this: 0 */
-    const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
+    try {
+      /* eslint no-invalid-this: 0 */
+      const modifiedContents = modifyUrls(file.path, file.contents.toString(), options)
+      file.contents = Buffer.from(modifiedContents)
 
-    file.contents = Buffer.from(modifiedContents)
+      this.push(file)
 
-    this.push(file)
-
-    cb()
+      return cb()
+    } catch (e) {
+      return cb(new gutil.PluginError('modify-css-urls', e))
+    }
   })
