@@ -27,7 +27,7 @@ describe('gulp-modify-css-urls', () => {
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
-      contents: new Buffer(fileContents)
+      contents: Buffer.from(fileContents)
     }))
 
     stream.end()
@@ -52,7 +52,7 @@ describe('gulp-modify-css-urls', () => {
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
-      contents: new Buffer(fileContents)
+      contents: Buffer.from(fileContents)
     }))
 
     stream.end()
@@ -77,7 +77,7 @@ describe('gulp-modify-css-urls', () => {
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
-      contents: new Buffer(fileContents)
+      contents: Buffer.from(fileContents)
     }))
 
     stream.end()
@@ -102,7 +102,7 @@ describe('gulp-modify-css-urls', () => {
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
-      contents: new Buffer(fileContents)
+      contents: Buffer.from(fileContents)
     }))
 
     stream.end()
@@ -127,7 +127,7 @@ describe('gulp-modify-css-urls', () => {
     stream.write(new gutil.File({
       base: '.',
       path: './style.css',
-      contents: new Buffer(fileContentsWithDataURI)
+      contents: Buffer.from(fileContentsWithDataURI)
     }))
 
     stream.end()
