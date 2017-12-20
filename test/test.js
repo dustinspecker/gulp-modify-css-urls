@@ -1,5 +1,4 @@
 /* global describe, beforeEach, it */
-'use strict'
 import assert from 'assert'
 import gutil from 'gulp-util'
 

@@ -1,4 +1,3 @@
-'use strict'
 import gutil from 'gulp-util'
 import isFn from 'is-fn'
 import rework from 'rework'
