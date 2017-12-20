@@ -33,7 +33,7 @@
     "is-fn": "^1.0.0",
     "rework": "^1.0.1",
     "rework-plugin-url": "^1.0.1",
-    "through2": "2.0.1"
+    "through2": "2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.12",
