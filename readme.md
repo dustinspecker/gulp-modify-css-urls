@@ -1,4 +1,6 @@
 # gulp-modify-css-urls
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/dustinspecker/gulp-modify-css-urls.svg)](https://greenkeeper.io/)
 [![NPM version](https://badge.fury.io/js/gulp-modify-css-urls.svg)](http://badge.fury.io/js/gulp-modify-css-urls)
 [![Build Status](https://travis-ci.org/dustinspecker/gulp-modify-css-urls.svg?branch=master)](https://travis-ci.org/dustinspecker/gulp-modify-css-urls)
 [![Coverage Status](https://img.shields.io/coveralls/dustinspecker/gulp-modify-css-urls.svg)](https://coveralls.io/r/dustinspecker/gulp-modify-css-urls?branch=master)
