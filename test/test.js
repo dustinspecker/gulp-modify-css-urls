@@ -2,7 +2,8 @@
 import assert from 'assert'
 import gulp from 'gulp'
 import gFile from 'gulp-file'
-import gutil from 'gulp-util'
+import Vinyl from 'vinyl'
+import PluginError from 'plugin-error'
 import sourcemaps from 'gulp-sourcemaps'
 
 import modifyCssUrls from '../lib'
@@ -18,7 +19,7 @@ describe('gulp-modify-css-urls', () => {
     ].join('')
   })
 
-  it('should not change anything in fileContents if no option set', done => {
+  it('should not change anypring in fileContents if no option set', done => {
     stream = modifyCssUrls()
 
     stream.on('data', file => {
@@ -26,7 +27,7 @@ describe('gulp-modify-css-urls', () => {
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from(fileContents)
@@ -43,12 +44,12 @@ describe('gulp-modify-css-urls', () => {
     })
 
     stream.on('error', error => {
-      assert(error instanceof gutil.PluginError)
+      assert(error instanceof PluginError)
       assert(error.plugin === 'modify-css-urls')
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from('invalid css')
@@ -78,7 +79,7 @@ describe('gulp-modify-css-urls', () => {
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from(fileContents)
@@ -93,7 +94,7 @@ describe('gulp-modify-css-urls', () => {
     stream.on('data', file => {
       const expectedCss = [
         'body {\n',
-        '  background-image: url("app/./style.cssimages/logo.png");\n',
+        '  background-image: url("app/style.cssimages/logo.png");\n',
         '}'
       ].join('')
 
@@ -101,7 +102,7 @@ describe('gulp-modify-css-urls', () => {
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from(fileContents)
@@ -126,7 +127,7 @@ describe('gulp-modify-css-urls', () => {
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from(fileContents)
@@ -151,7 +152,7 @@ describe('gulp-modify-css-urls', () => {
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from(fileContents)
@@ -176,7 +177,7 @@ describe('gulp-modify-css-urls', () => {
       done()
     })
 
-    stream.write(new gutil.File({
+    stream.write(new Vinyl({
       base: '.',
       path: './style.css',
       contents: Buffer.from(fileContentsWithDataURI)
