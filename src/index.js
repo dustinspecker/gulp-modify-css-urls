@@ -1,5 +1,5 @@
 import applySourceMap from 'vinyl-sourcemaps-apply'
-import gutil from 'gulp-util'
+import PluginError from 'plugin-error'
 import isFn from 'is-fn'
 import rework from 'rework'
 import reworkUrl from 'rework-plugin-url'
@@ -67,6 +67,6 @@ module.exports = options =>
 
       return cb()
     } catch (e) {
-      return cb(new gutil.PluginError('modify-css-urls', e))
+      return cb(new PluginError('modify-css-urls', e))
     }
   })
