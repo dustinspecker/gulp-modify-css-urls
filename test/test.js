@@ -185,4 +185,29 @@ describe('gulp-modify-css-urls', () => {
 
     stream.end()
   })
+
+  it('should not strip quotes from data uris', done => {
+    const fileContentsWithDataURI = [
+      'body {\n',
+      '  background-image: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'></svg>");\n',
+      '}'
+    ].join('')
+
+    stream = modifyCssUrls({
+      append: '?abcd1234'
+    })
+
+    stream.on('data', file => {
+      assert(file.contents.toString() === fileContentsWithDataURI)
+      done()
+    })
+
+    stream.write(new Vinyl({
+      base: '.',
+      path: './style.css',
+      contents: Buffer.from(fileContentsWithDataURI)
+    }))
+
+    stream.end()
+  })
 })

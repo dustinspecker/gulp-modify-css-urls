@@ -2,7 +2,7 @@ import applySourceMap from 'vinyl-sourcemaps-apply'
 import PluginError from 'plugin-error'
 import isFn from 'is-fn'
 import rework from 'rework'
-import reworkUrl from 'rework-plugin-url'
+import reworkFunc from 'rework-plugin-function'
 import through from 'through2'
 
 /**
@@ -20,27 +20,38 @@ const modifyUrls = (filePath, fileContents, sourcemap, options = {}) => {
   const {append, modify, prepend} = options
 
   return rework(fileContents, {source: filePath})
-    .use(reworkUrl(url => {
-      let formattedUrl = url
+    .use(reworkFunc({
+      url(url) {
+        /**
+         * The split/join/trim logic is copied from rework-plugin-url to remove redundant quotes.
+         * Currently removed due to: https://github.com/reworkcss/rework-plugin-url/issues/7
+         */
+        if (url.indexOf('data:') === 0) {
+          return `url("${url}")`
+        }
 
-      if (formattedUrl.indexOf('data:') === 0) {
-        return formattedUrl
+        let formattedUrl = url
+          .split('"')
+          .join('')
+          .split('\'')
+          .join('')
+          .trim()
+
+        if (isFn(modify)) {
+          formattedUrl = modify(formattedUrl, filePath)
+        }
+
+        if (typeof prepend === 'string') {
+          formattedUrl = prepend + formattedUrl
+        }
+
+        if (typeof append === 'string') {
+          formattedUrl += append
+        }
+
+        return `url("${formattedUrl}")`
       }
-
-      if (isFn(modify)) {
-        formattedUrl = modify(formattedUrl, filePath)
-      }
-
-      if (typeof prepend === 'string') {
-        formattedUrl = prepend + formattedUrl
-      }
-
-      if (typeof append === 'string') {
-        formattedUrl += append
-      }
-
-      return formattedUrl
-    }))
+    }, false))
     .toString({sourcemap, sourcemapAsObject: true})
 }
 
