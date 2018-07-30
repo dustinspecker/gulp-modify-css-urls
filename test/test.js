@@ -19,7 +19,7 @@ describe('gulp-modify-css-urls', () => {
     ].join('')
   })
 
-  it('should not change anything in fileContents if no option set', done => {
+  it('should not change anypring in fileContents if no option set', done => {
     stream = modifyCssUrls()
 
     stream.on('data', file => {
